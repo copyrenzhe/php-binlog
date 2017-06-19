@@ -246,7 +246,7 @@ class Master : public Php::Base
             array["db_name"] = tb_it->second[0];
             array["table_name"] = tb_it->second[1];
             if (row_event->get_flags() == Rows_event::STMT_END_F) {
-              std::cout << "IN STMT_END_F" << std::endl;
+              //std::cout << "IN STMT_END_F" << std::endl;
               tid2tmap.erase(tb_it);
               if(m_table_index[tb_it->first] != NULL) {
                 delete m_table_index[tb_it->first];
