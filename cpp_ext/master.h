@@ -23,7 +23,8 @@
 #include <algorithm>
 
 #define MAX_BINLOG_SIZE 1073741824
-#define MAX_BINLOG_POSITION MAX_BINLOG_SIZE/4
+//changed by yong, original is #define MAX_BINLOG_POSITION MAX_BINLOG_SIZE/4
+#define MAX_BINLOG_POSITION MAX_BINLOG_SIZE
 
 using namespace std;
 using namespace binary_log;
@@ -146,7 +147,7 @@ class Master : public Php::Base
       if(server_id < 0) {
         server_id = 1;
       }
-      //binlog->set_server_id((int)server_id);
+      binlog->set_server_id((int)server_id);
       int error_number= binlog->connect();
 
       if (const char* msg= str_error(error_number)) {
