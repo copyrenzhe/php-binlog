@@ -25,12 +25,15 @@ extern "C" {
 
         master.method<&Master::__construct>("__construct", {
             Php::ByVal("dsn", Php::Type::String),
-            Php::ByVal("filename", Php::Type::String, false),
-            Php::ByVal("position", Php::Type::Numeric, false)
+            Php::ByVal("server_id", Php::Type::Numeric, false)
           });
 
         master.method<&Master::connect>("connect");
         master.method<&Master::get_next_event>("get_next_event");
+        master.method<&Master::set_position>("set_position", {
+            Php::ByVal("position", Php::Type::Numeric),
+            Php::ByVal("filename", Php::Type::String, false)
+          });
 
         master.property("UNKNOWN_EVENT"             , Log_event_type::UNKNOWN_EVENT            , Php::Const);
         master.property("START_EVENT_V3"            , Log_event_type::START_EVENT_V3           , Php::Const);

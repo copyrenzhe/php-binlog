@@ -97,8 +97,8 @@ class Master : public Php::Base
   map<int, vector<string>> tid2tmap;
 
   string dsn;
-  string opt_filename;
-  long int opt_position;
+  long int position;
+  int server_id = 1;
 
 
  public:
@@ -136,12 +136,17 @@ class Master : public Php::Base
 
     void __construct(Php::Parameters &params) {
       dsn = params[0].stringValue();
+      server_id = params[1];
     }
 
 
     Php::Value connect(Php::Parameters &params) {
       drv = create_transport(dsn.c_str());
       binlog = new Binary_log(drv);
+      if(server_id < 0) {
+        server_id = 1;
+      }
+      //binlog->set_server_id((int)server_id);
       int error_number= binlog->connect();
 
       if (const char* msg= str_error(error_number)) {
@@ -283,6 +288,15 @@ class Master : public Php::Base
 
       return array;
 
+    }
+
+    Php::Value set_position(Php::Parameters &params) {
+      position = params[0];
+      if (!params[1]) {
+        return binlog->set_position(position);
+      } else {
+        return binlog->set_position(params[1].stringValue(), position);
+      }
     }
 
 
