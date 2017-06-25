@@ -17,22 +17,34 @@ Dependence
 --------------------
 * MySQL Binlog Events Library (https://github.com/bullsoft/mysql-binlog-events)
 * PHP 5/7: Support by PHP-CPP
-* MySQL 5.7
+* Download the source code of mysql-5.7.x(http://cdn.mysql.com/Downloads/MySQL-5.7/mysql-5.7.18.tar.gz)
+* Download the binaries of the same version(http://cdn.mysql.com/Downloads/MySQL-5.7/mysql-5.7.18-linux-glibc2.5-x86_64.tar.gz)
+* MySQL-CLIENT 5.7
 * PHP-CPP: A Zend API Wrapper in C++ (https://github.com/CopernicaMarketingSoftware/PHP-CPP)
 
 Install
 --------------------
 
+1. install mysql-bin-logevents
+    - git clone https://github.com/bullsoft/php-binlog
+    - cmake . -DMYSQLCLIENT_STATIC_LINKING:BOOL=TRUE -DENABLE_DOWNLOADS=1 -DMYSQL_SOURCE_INCLUDE_DIR=<mysql-5.7.x source code>/include -DMYSQL_DIR=<path of mysql directory or libmysql>
+    - make
+    - make install
+2. install php-binlog
+    - git clone https://github.com/bullsoft/php-binlog.git
+    - checkout mysql5.7 branch
+    - change to cpp_ext directory
+    - make && make install
 
 Example
 ----------------
 注：Binlog为行格式
 
 ```php
-$binlog = new MySqlBinlog("mysql://root:123456@127.0.0.1:3306");
+$serverId = 1;
+$binlog = new MySqlBinlog("mysql://root:123456@127.0.0.1:3306", $serverId);
 $binlog->connect();
 
-// not support yet
 // $binlog->set_postion();
 
 while(true) {

@@ -205,10 +205,6 @@ class Master : public Php::Base
       array["type_code"] = event->get_event_type();
       array["type_str"] = get_type_str(event->get_event_type());
 
-      if (event_start_pos >= MAX_BINLOG_POSITION) {
-        throw Php::Exception("position exceed max binlog position");
-      }
-
       if (
           event->get_event_type() == binary_log::TABLE_MAP_EVENT ||
           event->get_event_type() == binary_log::PRE_GA_WRITE_ROWS_EVENT ||
