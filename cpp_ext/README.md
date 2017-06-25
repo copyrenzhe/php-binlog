@@ -30,7 +30,10 @@ Install
     - cmake . -DMYSQLCLIENT_STATIC_LINKING:BOOL=TRUE -DENABLE_DOWNLOADS=1 -DMYSQL_SOURCE_INCLUDE_DIR=<mysql-5.7.x source code>/include -DMYSQL_DIR=<path of mysql directory or libmysql>
     - make
     - make install
-2. install php-binlog
+2. install PHP-CPP
+    - git clone https://github.com/CopernicaMarketingSoftware/PHP-CPP.git
+    - make && make install
+3. install php-binlog
     - git clone https://github.com/bullsoft/php-binlog.git
     - checkout mysql5.7 branch
     - change to cpp_ext directory
