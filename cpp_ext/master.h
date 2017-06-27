@@ -151,7 +151,7 @@ class Master : public Php::Base
       int error_number= binlog->connect();
 
       if (const char* msg= str_error(error_number)) {
-        cerr << msg << endl;
+//        cerr << msg << endl;
       }
 
       if (error_number != ERR_OK) {
@@ -177,12 +177,12 @@ class Master : public Php::Base
       if (error_number == ERR_OK) {
           const char *error= NULL;
           if (!(event= decode->decode_event((char*)buffer_buflen.first, buffer_buflen.second, &error, 1))) {
-              cerr << error << endl;
+//              cerr << error << endl;
               throw Php::Exception(string(error));
           }
       } else {
           const char* msg=  str_error(error_number);
-          cerr << msg << endl;
+//          cerr << msg << endl;
           throw Php::Exception(string(msg));
       }
 
@@ -278,6 +278,11 @@ class Master : public Php::Base
         /*           << " DB = " */
         /*           << qev->db */
         /*           << std::endl; */
+      }
+
+      if (event->get_event_type() == binary_log::ROTATE_EVENT) {
+        Rotate_event *rev = dynamic_cast<Rotate_event *>(event);
+        array["filename"] = rev->new_log_ident;
       }
 
       delete event;
