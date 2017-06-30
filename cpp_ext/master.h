@@ -283,6 +283,7 @@ class Master : public Php::Base
       if (event->get_event_type() == binary_log::ROTATE_EVENT) {
         Rotate_event *rev = dynamic_cast<Rotate_event *>(event);
         array["filename"] = rev->new_log_ident;
+        array["position"] = static_cast<int64_t>(rev->pos);
       }
 
       delete event;
@@ -294,7 +295,11 @@ class Master : public Php::Base
 
     Php::Value set_position(Php::Parameters &params) {
       position = params[0];
-      if (!params[1]) {
+      unsigned long m_position;
+      if (position < 4) {
+        m_position = binlog->get_position();
+        return binlog->set_position(m_position);
+      }else if (!params[1]) {
         return binlog->set_position(position);
       } else {
         return binlog->set_position(params[1].stringValue(), position);
