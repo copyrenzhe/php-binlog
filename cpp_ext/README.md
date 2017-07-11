@@ -25,13 +25,14 @@ Dependence
 Install
 --------------------
 
-1. install mysql-bin-logevents
-    - `git clone https://github.com/bullsoft/php-binlog`
+1. install mysql-binlog-events
+    - `git clone https://github.com/bullsoft/mysql-binlog-events`
     - `cmake . -DMYSQLCLIENT_STATIC_LINKING:BOOL=TRUE -DENABLE_DOWNLOADS=1 -DMYSQL_SOURCE_INCLUDE_DIR=<mysql-5.7.x source code>/include -DMYSQL_DIR=<path of mysql directory or libmysql>`
     - `make`
     - `make install`
-2. install PHP-CPP
-    - `git clone https://github.com/CopernicaMarketingSoftware/PHP-CPP.git`
+2. install PHP-CPP-LEGACY  
+    `if php version >= 7.0 install PHP-CPP instead`
+    - `git clone https://github.com/CopernicaMarketingSoftware/PHP-CPP-LEGACY.git`
     - `make && make install`
 3. install php-binlog
     - `git clone https://github.com/bullsoft/php-binlog.git`
@@ -103,7 +104,7 @@ array(5) {
       [2] =>
       string(4) "asdf"
       [3] =>
-      string(2) "22"
+      string(2) "4"
       [4] =>
       string(1) "0"
     }
@@ -116,7 +117,7 @@ array(5) {
       [2] =>
       string(4) "asdf"
       [3] =>
-      string(1) "4"
+      string(1) "22"
       [4] =>
       string(1) "0"
     }
@@ -129,7 +130,7 @@ array(5) {
       [2] =>
       string(4) "asdf"
       [3] =>
-      string(2) "22"
+      string(2) "4"
       [4] =>
       string(1) "0"
     }
@@ -142,7 +143,7 @@ array(5) {
       [2] =>
       string(4) "asdf"
       [3] =>
-      string(1) "4"
+      string(1) "22"
       [4] =>
       string(1) "0"
     }
