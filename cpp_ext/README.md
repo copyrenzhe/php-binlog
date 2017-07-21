@@ -81,7 +81,7 @@ while(true) {
 ### Update_rows
 
 ```sql
-update `type` set type_id = 22 WHERE id in (58, 59);
+update `type` set type_id = 22 WHERE id = 58;
 ```
 ```php
 array(5) {
@@ -112,32 +112,6 @@ array(5) {
     array(5) {
       [0] =>
       string(2) "58"
-      [1] =>
-      string(8) "adsfasdf"
-      [2] =>
-      string(4) "asdf"
-      [3] =>
-      string(1) "22"
-      [4] =>
-      string(1) "0"
-    }
-    [2] =>
-    array(5) {
-      [0] =>
-      string(2) "59"
-      [1] =>
-      string(8) "adsfasdf"
-      [2] =>
-      string(4) "asdf"
-      [3] =>
-      string(2) "4"
-      [4] =>
-      string(1) "0"
-    }
-    [3] =>
-    array(5) {
-      [0] =>
-      string(2) "59"
       [1] =>
       string(8) "adsfasdf"
       [2] =>
